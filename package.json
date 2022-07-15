@@ -1,0 +1,20 @@
+{
+  "name": "BobTheBot",
+  "version": "1.0.0",
+  "description": "BobTheBot is a discord antiphishing bot that blocks messages of known scams and sus links!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Skitbet",
+  "license": "ISC",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "discord.js": "^12.5.1"
+  },
+  "devDependencies": {
+    "ascii-table": "0.0.9",
+    "colors": "^1.4.0"
+  }
+}
