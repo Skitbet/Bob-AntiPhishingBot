@@ -1,7 +1,7 @@
 
 # About Bob
 
-Bob is a discord bot that deletes all known phising links/scams 
+Bob is a discord bot that deletes all known phising links/scams (over 14k)
 and will even delete suspicious links! This bot is open source and free to use to everyone.
 I will not be providing a host for the bot!
 
