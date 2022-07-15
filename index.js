@@ -4,7 +4,8 @@ const fs = require("fs");
 
 const domainList = require("./botconfig/domain-list.json");
 const susLinks = require("./botconfig/sus-links.json");
-
+const { config } = require("process");
+const botConfig = require("./botconfig/config.json");
 const client = new Client({
   disableEveryone: true,
   partials: ['MESSAGE']
@@ -33,13 +34,19 @@ client.on('message', (message) => {
 
   var embed = new MessageEmbed()
     .setColor("RED")
-    .setTitle("🚨Detected a suspicious message!🚨")
-    .setDescription("Deleted message from " + message.author.username + " for containing a scam or suspicious link!")
-
+    .setTitle("🚨 Detected a suspicious message! 🚨")
+    .setDescription("Deleted message from " + message.author.username + "#" + message.author.discriminator + " for containing a scam or suspicious link!")
+    .addField("Author:", "<@" + message.author.id + ">", false)
+    .addField("Channel:", "<#" + message.channel.id + ">", false)
+    .addField("Message Content:", "```" + message.content + "```", false)
+  
   for (i = 0; i < domainList.domains.length; i++) {
     if (message.content.includes(domainList.domains[i])) {
       deleted = true;
-      message.channel.send({ embed: embed });
+
+      client.channels.fetch(botConfig.logChannel)
+      .then(logChannel => logChannel.send({ embed: embed }))
+
       message.delete()
     }
   }
@@ -48,7 +55,10 @@ client.on('message', (message) => {
     for (i = 0; i < susLinks.domains.length; i++) {
       if (message.content.includes(susLinks.domains[i])) {
         deleted = true;
-        message.channel.send({ embed: embed });
+
+        client.channels.fetch(botConfig.logChannel)
+        .then(logChannel => logChannel.send({ embed: embed }))
+
         message.delete()
       }
     }
@@ -56,5 +66,5 @@ client.on('message', (message) => {
 });
 
 
-client.login(require("./botconfig/config.json").token);
+client.login(botConfig.token);
 
