@@ -17,7 +17,6 @@ client.on('ready', () => {
     console.log("\n")
     console.log(`     ┃ `.bold.brightGreen + `Bot has started!`.bold.brightGreen + " ".repeat(-1+stringlength-` ┃ `.length-`Bot has started!`.length)+ "┃".bold.brightGreen)
     console.log(`     ┃ `.bold.brightGreen + ` /--/ ${client.user.tag} /--/ `.bold.brightGreen+ " ".repeat(-1+stringlength-` ┃ `.length-` /--/ ${client.user.tag} /--/ `.length)+ "┃".bold.brightGreen)
-
   }catch{ /* */ }
 })
 
@@ -48,7 +47,7 @@ client.on('message', (message) => {
       // Send it to logs
       client.channels.fetch(botConfig.logChannel)
       .then(logChannel => logChannel.send({ embed: embed }))
-
+      return;
     }
   }
 
@@ -68,7 +67,7 @@ client.on('message', (message) => {
         // Send it to logs
         client.channels.fetch(botConfig.logChannel)
         .then(logChannel => logChannel.send({ embed: embed }))
-
+        return;
       }
 
     }
