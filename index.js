@@ -60,9 +60,13 @@ client.on('message', (message) => {
       // Checking to see if the message content contains the link
       if (message.content.includes(susLinks.domains[i])) {
 
-        // Delete the msg
-        deleted = true;
-        message.delete()
+        if (botConfig.deleteSusLinks) {
+          // Delete the msg
+          deleted = true;
+          message.delete()
+        } else {
+          embed.setDescription("Potential scam detected!")
+        }
 
         // Send it to logs
         client.channels.fetch(botConfig.logChannel)

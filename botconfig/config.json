@@ -1,4 +1,6 @@
 {
   "token": "token",
-  "logChannel": "channel id"
+  "logChannel": "channel id",
+  "deleteSusLinks": "true"
+  
 }
